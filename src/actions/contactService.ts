@@ -1,7 +1,7 @@
 "use server";
 
+import { uploadToCloudinary } from "@/lib/cloudinary";
 import nodemailer from "nodemailer";
-import { uploadToS3 } from "@/lib/s3";
 
 interface ContactFormData {
   fullName: string;
@@ -35,11 +35,10 @@ export async function submitContactForm(formData: FormData) {
       if (file && file instanceof File) {
         const buffer = Buffer.from(await file.arrayBuffer());
         const fileName = (file as File).name;
-        const contentType = (file as File).type || "application/octet-stream";
         try {
-          attachmentUrl = await uploadToS3(buffer, fileName, contentType);
+          attachmentUrl = await uploadToCloudinary(buffer, fileName);
         } catch (err) {
-          console.error("S3 upload failed:", err);
+          console.error("Cloudinary upload failed:", err);
           attachmentUrl = null;
         }
       }

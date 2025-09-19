@@ -6,8 +6,8 @@ import { ObjectId } from "mongodb";
 export async function GET(request: NextRequest) {
   try {
     const client = await clientPromise;
-    const db = client.db("scalesolutions");
-    const collection = db.collection("caseStudies");
+    const db = client.db("surescalesolutions");
+    const collection = db.collection("case-studies");
 
     const id = request.nextUrl.searchParams.get("id");
     if (id) {
