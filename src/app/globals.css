@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+
+body {
+  @apply bg-white text-black;
+  font-family: var(--font-poppins);
+}
+
+/* Font variables */
+:root {
+  --font-poppins: var(--font-poppins);
+}
+
+@theme {
+  --breakpoint-xs: 25rem;
+  
+  /* --color-primary: #5a40ff; */
+  --color-primary: #2A3FCC;
+  --color-secondary: #1E1363;
+  --color-darkGray: #666666;
+  --color-lightGray: #484848;
+  --color-background: #E6EDFF;
+
+  --shadow-light: 2px 2px 200px rgba(0, 0, 0, 0.10);
+  --shadow-dark: 4px 4px 200px rgba(0, 0, 0, 0.10);
+  --shadow-carousel: 0px 0px 15px rgba(0, 0, 0, 0.15);
+
+  --font-family-poppins: var(--font-poppins);
+
+  --animate-counter-rotate: counter-rotate 25s linear infinite;
+  --animate-orbit: orbit 25s linear infinite;
+  --animate-counter-rotate-paused: counter-rotate 25s linear infinite paused;
+  --animate-orbit-paused: orbit 25s linear infinite paused;
+
+  @keyframes counter-rotate {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+
+  @keyframes orbit {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.hero-enterprise-growth-solutions {
+  background-image: url('/home/hero-enterprise-growth-solutions.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.laptop-background-image {
+  background-image: url('/global/laptop-background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

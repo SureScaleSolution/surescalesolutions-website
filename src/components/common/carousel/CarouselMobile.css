@@ -1,0 +1,31 @@
+/* Mobile-specific carousel styles - override desktop styles */
+.carousel-mobile .slick-slide {
+  padding: 10px 5px;
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+.carousel-mobile .slick-slide > div {
+  margin: 0 5px;
+}
+
+.carousel-mobile .slick-center {
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+.carousel-mobile .slick-dots {
+  bottom: -30px;
+}
+
+.carousel-mobile .slick-dots li button:before {
+  font-size: 12px;
+  color: #2A3FCC;
+  opacity: 0.5;
+}
+
+.carousel-mobile .slick-dots li.slick-active button:before {
+  opacity: 1;
+  color: #2A3FCC;
+  transform: scale(1.2);
+}
