@@ -7,14 +7,57 @@ type Props = {
   >;
 };
 
+interface AttachedFile {
+  id: string;
+  file: File;
+  name: string;
+  size: number;
+}
+
 export default function ContactForm({ setMessage }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [attachedFiles, setAttachedFiles] = useState<AttachedFile[]>([]);
+
+  const handleFileSelection = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files) return;
+
+    const newFiles: AttachedFile[] = Array.from(files).map((file) => ({
+      id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      file,
+      name: file.name,
+      size: file.size,
+    }));
+
+    setAttachedFiles((prev) => [...prev, ...newFiles]);
+    
+    // Clear the input so the same file can be selected again if removed
+    e.target.value = '';
+  };
+
+  const handleFileRemoval = (fileId: string) => {
+    setAttachedFiles((prev) => prev.filter((file) => file.id !== fileId));
+  };
+
+  const formatFileSize = (bytes: number): string => {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setMessage(null);
 
     const formData = new FormData(e.currentTarget);
+    
+    // Add all attached files to form data
+    attachedFiles.forEach((attachedFile, index) => {
+      formData.append(`attachment_${index}`, attachedFile.file);
+    });
+
     const result = await submitContactForm(formData);
 
     setMessage({
@@ -30,6 +73,7 @@ export default function ContactForm({ setMessage }: Props) {
       if (form) {
         form.reset();
       }
+      setAttachedFiles([]);
     }
   };
 
@@ -110,8 +154,52 @@ export default function ContactForm({ setMessage }: Props) {
             type="file"
             id="attachment"
             name="attachment"
+            multiple
+            onChange={handleFileSelection}
             className="w-full px-4 py-1.5 md:py-3 border border-primary rounded md:rounded-md text-darkGray placeholder-gray-400 placeholder:text-xs placeholder:sm:text-sm placeholder:md:text-base focus:outline-none focus:ring-2 focus:ring-primary/20"
           />
+          
+          {/* Attached Files Preview */}
+          {attachedFiles.length > 0 && (
+            <div className="mt-2 space-y-2">
+              <p className="text-sm text-gray-600 font-medium">Attached Files:</p>
+              {attachedFiles.map((file) => (
+                <div
+                  key={file.id}
+                  className="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded"
+                >
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-gray-900 truncate">
+                      {file.name}
+                    </p>
+                    <p className="text-xs text-gray-500">
+                      {formatFileSize(file.size)}
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => handleFileRemoval(file.id)}
+                    className="ml-3 p-1 text-red-500 hover:text-red-700 hover:bg-red-50 rounded transition-colors duration-200"
+                    aria-label={`Remove ${file.name}`}
+                  >
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Submit Button */}

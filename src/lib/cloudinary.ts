@@ -12,19 +12,21 @@ export const uploadToCloudinary = async (
   fileName: string
 ): Promise<string> => {
   try {
-    // Convert buffer to base64
-    const fileStr = `data:image/jpeg;base64,${file.toString("base64")}`;
+    // Convert buffer to base64 with proper MIME type detection
+    const fileStr = `data:application/octet-stream;base64,${file.toString("base64")}`;
 
     const result = await cloudinary.uploader.upload(fileStr, {
-      folder: "contact-form-images",
+      folder: "contact-form-files",
       public_id: `${Date.now()}-${fileName.split(".")[0]}`,
-      resource_type: "image",
+      resource_type: "auto", // Automatically detect the file type
+      use_filename: true,
+      unique_filename: true,
     });
 
     return result.secure_url;
   } catch (error) {
     console.error("Error uploading to Cloudinary:", error);
-    throw new Error("Failed to upload image to Cloudinary");
+    throw new Error("Failed to upload file to Cloudinary");
   }
 };
 

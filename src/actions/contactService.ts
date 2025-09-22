@@ -24,22 +24,31 @@ export async function submitContactForm(formData: FormData) {
       service: formData.get("service") as string,
     };
 
-    // Handle optional attachment: prefer client-provided presigned public URL
-    let attachmentUrl: string | null = null;
-    const clientAttachmentUrl = formData.get("attachmentUrl") as string | null;
-    if (clientAttachmentUrl) {
-      attachmentUrl = clientAttachmentUrl;
+    // Handle multiple attachments: prefer client-provided presigned public URLs
+    const attachmentUrls: string[] = [];
+    
+    // Check for client-provided URLs first
+    const clientAttachmentUrls = formData.getAll("attachmentUrl") as string[];
+    if (clientAttachmentUrls.length > 0) {
+      attachmentUrls.push(...clientAttachmentUrls.filter(url => url && url.trim() !== ''));
     } else {
-      // fallback: accept a File in the server action and upload to S3
-      const file = formData.get("attachment");
-      if (file && file instanceof File) {
-        const buffer = Buffer.from(await file.arrayBuffer());
-        const fileName = (file as File).name;
+      // fallback: accept Files in the server action and upload to cloudinary
+      const files = Array.from(formData.entries())
+        .filter(([key]) => key.startsWith('attachment_'))
+        .map(([, file]) => file as File)
+        .filter(file => file instanceof File && file.size > 0);
+
+      for (const file of files) {
         try {
-          attachmentUrl = await uploadToCloudinary(buffer, fileName);
+          const buffer = Buffer.from(await file.arrayBuffer());
+          const fileName = file.name;
+          const uploadedUrl = await uploadToCloudinary(buffer, fileName);
+          if (uploadedUrl) {
+            attachmentUrls.push(uploadedUrl);
+          }
         } catch (err) {
-          console.error("Cloudinary upload failed:", err);
-          attachmentUrl = null;
+          console.error(`Cloudinary upload failed for ${file.name}:`, err);
+          // Continue with other files even if one fails
         }
       }
     }
@@ -73,6 +82,10 @@ export async function submitContactForm(formData: FormData) {
     });
 
     // Email content for support team
+    const attachmentsText = attachmentUrls.length > 0 
+      ? attachmentUrls.map((url, index) => `Attachment ${index + 1}: ${url}`).join('\n      ')
+      : "No attachments provided";
+
     const supportEmailContent = `
       New Contact Form Submission
       
@@ -82,7 +95,8 @@ export async function submitContactForm(formData: FormData) {
       Subject: ${contactData.subject}
       Company/Startup: ${contactData.company || "Not provided"}
       Service of Interest: ${contactData.service}
-      Attachment: ${attachmentUrl || "No attachment provided"}
+      Attachments: 
+      ${attachmentsText}
       
       Submitted at: ${new Date().toLocaleString()}
     `;
@@ -121,10 +135,10 @@ export async function submitContactForm(formData: FormData) {
               contactData.company || "Not provided"
             }</p>
             <p><strong>Service of Interest:</strong> ${contactData.service}</p>
-            <p><strong>Attachment:</strong> ${
-              attachmentUrl
-                ? `<a href="${attachmentUrl}">${attachmentUrl}</a>`
-                : "No attachment provided"
+            <p><strong>Attachments:</strong> ${
+              attachmentUrls.length > 0
+                ? attachmentUrls.map((url, index) => `<br>&nbsp;&nbsp;${index + 1}. <a href="${url}">${url}</a>`).join('')
+                : "No attachments provided"
             }</p>
           </div>
           <p style="color: #666; font-size: 12px;">
@@ -173,8 +187,13 @@ export async function submitContactForm(formData: FormData) {
             </div>
 
       ${
-        attachmentUrl
-          ? `<p style="color: #555; line-height: 1.6;">Attachment uploaded: <a href="${attachmentUrl}">${attachmentUrl}</a></p>`
+        attachmentUrls.length > 0
+          ? `<div style="background-color: #f0f9ff; padding: 15px; border-radius: 5px; margin: 20px 0;">
+               <p style="margin: 0; color: #0369a1; font-size: 14px;">
+                 <strong>Attachments uploaded:</strong><br>
+                 ${attachmentUrls.map((url, index) => `${index + 1}. <a href="${url}" style="color: #0369a1;">${url}</a>`).join('<br>')}
+               </p>
+             </div>`
           : ""
       }
             
