@@ -29,10 +29,37 @@ export default function ContactForm({ setMessage }: Props) {
       size: file.size,
     }));
 
+    // Calculate total size including existing files
+    const currentTotalSize = attachedFiles.reduce(
+      (total, file) => total + file.size,
+      0
+    );
+    const newFilesTotalSize = newFiles.reduce(
+      (total, file) => total + file.size,
+      0
+    );
+    const totalSize = currentTotalSize + newFilesTotalSize;
+
+    // 20MB limit (20 * 1024 * 1024 bytes)
+    const MAX_TOTAL_SIZE = 20 * 1024 * 1024;
+
+    if (totalSize > MAX_TOTAL_SIZE) {
+      setMessage({
+        type: "error",
+        text: `Total file size cannot exceed 20MB. Current total: ${formatFileSize(
+          currentTotalSize
+        )}, Selected files: ${formatFileSize(
+          newFilesTotalSize
+        )}, Combined: ${formatFileSize(totalSize)}`,
+      });
+      e.target.value = ""; // Clear the input
+      return;
+    }
+
     setAttachedFiles((prev) => [...prev, ...newFiles]);
-    
+
     // Clear the input so the same file can be selected again if removed
-    e.target.value = '';
+    e.target.value = "";
   };
 
   const handleFileRemoval = (fileId: string) => {
@@ -40,19 +67,28 @@ export default function ContactForm({ setMessage }: Props) {
   };
 
   const formatFileSize = (bytes: number): string => {
-    if (bytes === 0) return '0 Bytes';
+    if (bytes === 0) return "0 Bytes";
     const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const sizes = ["Bytes", "KB", "MB", "GB"];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   };
+
+  const getTotalSize = (): number => {
+    return attachedFiles.reduce((total, file) => total + file.size, 0);
+  };
+
+  const MAX_TOTAL_SIZE = 20 * 1024 * 1024; // 20MB
+  const currentTotalSize = getTotalSize();
+  const remainingSize = MAX_TOTAL_SIZE - currentTotalSize;
+  const usagePercentage = (currentTotalSize / MAX_TOTAL_SIZE) * 100;
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setMessage(null);
 
     const formData = new FormData(e.currentTarget);
-    
+
     // Add all attached files to form data
     attachedFiles.forEach((attachedFile, index) => {
       formData.append(`attachment_${index}`, attachedFile.file);
@@ -158,16 +194,17 @@ export default function ContactForm({ setMessage }: Props) {
             onChange={handleFileSelection}
             className="w-full px-4 py-1.5 md:py-3 border border-primary rounded md:rounded-md text-darkGray placeholder-gray-400 placeholder:text-xs placeholder:sm:text-sm placeholder:md:text-base focus:outline-none focus:ring-2 focus:ring-primary/20"
           />
-          
+
           {/* Attached Files Preview */}
           {attachedFiles.length > 0 && (
             <div className="mt-2 space-y-2">
-              <p className="text-sm text-gray-600 font-medium">Attached Files:</p>
+              <p className="text-sm text-gray-600 font-medium">
+                Attached Files:
+              </p>
               {attachedFiles.map((file) => (
                 <div
                   key={file.id}
-                  className="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded"
-                >
+                  className="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded">
                   <div className="flex-1">
                     <p className="text-sm font-medium text-gray-900 truncate">
                       {file.name}
@@ -180,14 +217,12 @@ export default function ContactForm({ setMessage }: Props) {
                     type="button"
                     onClick={() => handleFileRemoval(file.id)}
                     className="ml-3 p-1 text-red-500 hover:text-red-700 hover:bg-red-50 rounded transition-colors duration-200"
-                    aria-label={`Remove ${file.name}`}
-                  >
+                    aria-label={`Remove ${file.name}`}>
                     <svg
                       className="w-4 h-4"
                       fill="none"
                       stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
+                      viewBox="0 0 24 24">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
