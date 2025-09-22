@@ -74,14 +74,6 @@ export default function ContactForm({ setMessage }: Props) {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   };
 
-  const getTotalSize = (): number => {
-    return attachedFiles.reduce((total, file) => total + file.size, 0);
-  };
-
-  const MAX_TOTAL_SIZE = 20 * 1024 * 1024; // 20MB
-  const currentTotalSize = getTotalSize();
-  const remainingSize = MAX_TOTAL_SIZE - currentTotalSize;
-  const usagePercentage = (currentTotalSize / MAX_TOTAL_SIZE) * 100;
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
