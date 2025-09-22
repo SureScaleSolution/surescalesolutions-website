@@ -109,7 +109,7 @@ export async function submitContactForm(formData: FormData) {
 
       Our team will review your message and respond within 24-48 hours. We appreciate your interest in our services and look forward to assisting you.
 
-      If you have any urgent questions, please feel free to contact us directly at sales@surescalesolutions.com.
+      If you have any urgent questions, please feel free to contact us directly at ${SMTP_USER}.
 
       Best regards,
       SureScale Solutions Team
@@ -118,7 +118,7 @@ export async function submitContactForm(formData: FormData) {
     // Send email to support team
     await transporter.sendMail({
       from: SMTP_USER,
-      to: "sales@surescalesolutions.com",
+      to: SMTP_USER,
       subject: `Contact Form: ${contactData.subject}`,
       text: supportEmailContent,
       html: `
@@ -182,7 +182,7 @@ export async function submitContactForm(formData: FormData) {
             <div style="background-color: #e3f2fd; padding: 15px; border-radius: 5px; margin: 20px 0;">
               <p style="margin: 0; color: #1976d2; font-size: 14px;">
                 <strong>Need immediate assistance?</strong><br>
-        Contact us directly at: <a href="mailto:sales@surescalesolutions.com" style="color: #1976d2;">sales@surescalesolutions.com</a>
+        Contact us directly at: <a href="mailto:${SMTP_USER}" style="color: #1976d2;">${SMTP_USER}</a>
               </p>
             </div>
 
