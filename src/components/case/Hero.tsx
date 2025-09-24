@@ -10,8 +10,8 @@ interface Props { caseStudy: CaseStudyDocument }
 export const Hero: React.FC<Props> = ({ caseStudy }) => {
 
   return (
-    <section>
-      <div className="max-w-[1660px] mx-auto w-full  flex flex-col  py-10 sm:py-14 md:py-20 lg:py-24  bg-gradient-to-b from-background to-white px-4 sm:px-8 md:px-12 lg:px-16 gap-y-20">
+    <section className="bg-gradient-to-b from-background to-white overflow-x-hidden ">
+      <div className="max-w-[1660px] mx-auto w-full  flex flex-col  py-10 sm:py-14 md:py-20 lg:py-24 px-4 sm:px-8 md:px-12 lg:px-16 gap-y-20">
         <motion.div
           variants={fadeUp}
           initial="hidden"

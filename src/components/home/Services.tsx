@@ -167,8 +167,8 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="w-full py-4 sm:py-8 md:py-12 lg:py-24   ">
-      <div className="max-w-[1660px] mx-auto w-full px-6 sm:px-10  overflow-hidden   flex flex-col gap-y-6 md:gap-y-16  ">
+    <section id="services" className="w-full py-4 overflow-hidden sm:py-8 md:py-12 lg:py-24   ">
+      <div className="max-w-[1660px] mx-auto w-full px-6 sm:px-10 flex flex-col gap-y-6 md:gap-y-16  ">
         {/* Text */}
         <div className="flex flex-col items-center gap-x-4 md:gap-y-6">
           <motion.div

@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface HeaderMobileProps {
   isMenuOpen: boolean;
@@ -12,7 +13,7 @@ const HeaderMobile = ({ isMenuOpen, toggleMenu }: HeaderMobileProps) => {
     <header className="w-full lg:hidden  bg-background">
       <nav className="w-full mx-auto flex px-4 py-6 relative  ">
         <div className="w-full flex justify-between items-center">
-          <div>
+          <Link href="/">
             <Image
               width={50}
               height={50}
@@ -20,7 +21,7 @@ const HeaderMobile = ({ isMenuOpen, toggleMenu }: HeaderMobileProps) => {
               alt=""
               className="h-8 w-auto"
             ></Image>
-          </div>
+          </Link>
           <button className="cursor-pointer" onClick={toggleMenu}>
             {!isMenuOpen ? (
               <Image

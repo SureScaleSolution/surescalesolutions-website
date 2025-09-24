@@ -12,8 +12,8 @@ export const Challenges: React.FC<Props> = ({ caseStudy }) => {
   const isOdd = challengesList.length % 2 !== 0;
 
   return (
-    <section>
-      <motion.div className="max-w-[1660px] mx-auto w-full  flex flex-col  pt-10 sm:pt-12 md:pt-16 lg:pt-18 pb-5 sm:pb-7 md:pb-10 lg:pb-12   bg-background px-4 sm:px-8 md:px-12 lg:px-16 gap-y-8 md:gap-y-12 lg:gap-y-20">
+    <section className="bg-background">
+      <motion.div className="max-w-[1660px] mx-auto w-full  flex flex-col  pt-10 sm:pt-12 md:pt-16 lg:pt-18 pb-5 sm:pb-7 md:pb-10 lg:pb-12   px-4 sm:px-8 md:px-12 lg:px-16 gap-y-8 md:gap-y-12 lg:gap-y-20">
         <motion.div
           initial="hidden"
           whileInView="visible"

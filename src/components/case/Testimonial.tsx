@@ -9,8 +9,8 @@ import { fadeUp } from "../common/MotionFunctions";
 interface Props { caseStudy: CaseStudyDocument }
 export const Testimonial: React.FC<Props> = ({ caseStudy }) => {
   return (
-    <section>
-      <motion.div className="max-w-[1660px] mx-auto w-full  flex flex-col   bg-white pt-16 md:pt-24 lg:pt-30  ">
+    <section className="bg-white">
+      <motion.div className="max-w-[1660px] mx-auto w-full  flex flex-col pt-16 md:pt-24 lg:pt-30  ">
         <motion.div
           variants={fadeUp}
           initial="hidden"
@@ -25,7 +25,7 @@ export const Testimonial: React.FC<Props> = ({ caseStudy }) => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 1 }}
-          className="flex flex-col   shadow-dark px-6 "
+          className="flex flex-col   shadow-dark px-6 mb-12 rounded-xl "
         >
           <div className="flex flex-col w-full max-w-[980px] py-10 md:py-16 lg:py-20  mx-auto gap-y-5 md:gap-y-8">
             {/* stars */}
