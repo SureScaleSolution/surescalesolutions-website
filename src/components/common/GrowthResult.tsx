@@ -36,28 +36,110 @@ export const GrowthResult = () => {
           variants={fadeUp}
           whileInView="visible"
           viewport={{ once: true, amount: 1 }}
-          className="flex flex-col gap-y-4 md:gap-y-6"
-        >
-          <Heading2 center="Growth Results After Reinstatement" textColor="text-secondary" />
+          className="flex flex-col gap-y-4 md:gap-y-6">
+          <Heading2
+            center="Growth Results After Reinstatement"
+            textColor="text-secondary"
+          />
           <p className="text-sm md:text-lg lg:text-xl text-black max-w-[800px] mx-auto text-center">
-            At <span className="text-primary font-semibold">SureScaleSolution</span>, reinstatement is just the beginning we focus on long-term growth and compliance:
+            At{" "}
+            <span className="text-primary font-semibold">
+              SureScaleSolution
+            </span>
+            , reinstatement is just the beginning we focus on long-term growth
+            and compliance:
           </p>
         </motion.div>
 
-        {/* Results Grid */}
+        {/* Results Grid - Large screen*/}
         <motion.div
           initial="hidden"
           whileInView="visible"
           variants={parentOpacity}
           viewport={{ once: true, amount: 0.6 }}
-          className="w-full max-w-[1400px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
-        >
+          className="hidden lg:grid w-full max-w-[1400px] mx-auto grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {results.map((result, index) => (
             <motion.div
               variants={childOpacity}
-              className="  p-4 md:p-6 text-center flex flex-col gap-y-3 md:gap-y-4"
-              key={index}
-            >
+              className="  px-4 md:px-6 text-center flex flex-col gap-y-3 md:gap-y-4"
+              key={index}>
+              <h3 className="font-bold text-primary text-base md:text-lg lg:text-xl">
+                {result.title}
+              </h3>
+            </motion.div>
+          ))}
+          {results.map((result, index) => (
+            <motion.div
+              variants={childOpacity}
+              className="  px-4 md:px-6 text-center flex flex-col gap-y-3 md:gap-y-4"
+              key={index}>
+              <p className="text-black text-xs md:text-sm leading-relaxed">
+                {result.description}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
+        {/* Results Grid - Medium screen*/}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={parentOpacity}
+          viewport={{ once: true, amount: 0.6 }}
+          className="hidden sm:grid lg:hidden w-full max-w-[1400px] mx-auto grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {results.slice(0, 2).map((result, index) => (
+            <motion.div
+              variants={childOpacity}
+              className="  px-4 md:px-6 text-center flex flex-col gap-y-3 md:gap-y-4"
+              key={index}>
+              <h3 className="font-bold text-primary text-base md:text-lg lg:text-xl">
+                {result.title}
+              </h3>
+            </motion.div>
+          ))}
+          {results.slice(0, 2).map((result, index) => (
+            <motion.div
+              variants={childOpacity}
+              className="  px-4 md:px-6 text-center flex flex-col gap-y-3 md:gap-y-4 mb-8"
+              key={index}>
+              <p className="text-black text-xs md:text-sm leading-relaxed">
+                {result.description}
+              </p>
+            </motion.div>
+          ))}
+          {results.slice(2, 5).map((result, index) => (
+            <motion.div
+              variants={childOpacity}
+              className="  px-4 md:px-6 text-center flex flex-col gap-y-3 md:gap-y-4"
+              key={index}>
+              <h3 className="font-bold text-primary text-base md:text-lg lg:text-xl">
+                {result.title}
+              </h3>
+            </motion.div>
+          ))}
+          {results.slice(2, 5).map((result, index) => (
+            <motion.div
+              variants={childOpacity}
+              className="  px-4 md:px-6 text-center flex flex-col gap-y-3 md:gap-y-4"
+              key={index}>
+              <p className="text-black text-xs md:text-sm leading-relaxed">
+                {result.description}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Results Grid - Small screen*/}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={parentOpacity}
+          viewport={{ once: true, amount: 0.6 }}
+          className="grid sm:hidden mx-auto grid-cols-1 gap-10">
+          {results.map((result, index) => (
+            <motion.div
+              variants={childOpacity}
+              className="  px-4 md:px-6 text-center flex flex-col gap-y-3 md:gap-y-4"
+              key={index}>
               <h3 className="font-bold text-primary text-base md:text-lg lg:text-xl">
                 {result.title}
               </h3>
