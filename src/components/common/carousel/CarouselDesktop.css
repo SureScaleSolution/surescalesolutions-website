@@ -3,24 +3,34 @@
   margin: 0 auto;
 }
 
-.slick-slide {
-  padding: 20px 10px;
+.slick-track {
+  display: flex !important;
+  align-items: stretch;
 }
 
-.slick-slide>div {
-  margin: 0 5px;
+.slick-slide {
+  padding: 20px 10px;
+  display: flex !important;
+  height: auto !important;
+}
+
+.slick-slide > div {
+  height: 100%;
+  display: flex !important;
+  width: 100%;
+}
+
+.slick-slide > div > div {
+  display: flex !important;
+  width: 100%;
 }
 
 /* Center slide styling */
 .slick-center {
-  transform: scale(1.08);
-  opacity: 1;
   transition: all 0.3s ease;
 }
 
 .slick-slide:not(.slick-center) {
-  opacity: 0.5;
-  transform: scale(0.95);
   transition: all 0.3s ease;
 }
 

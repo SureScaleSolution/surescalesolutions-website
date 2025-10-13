@@ -52,7 +52,7 @@ export default function CarouselMobile({ testimonials }: CarouselMobileProps) {
   };
 
   return (
-    <div className="px-10 md:hidden bg-white carousel-mobile">
+    <div className="px-10 sm:hidden bg-white carousel-mobile">
       <Slider {...settings}>
         {testimonials.map((testimonial, index) => (
           <div key={index} className="py-2">

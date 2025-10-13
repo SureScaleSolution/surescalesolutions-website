@@ -15,7 +15,7 @@ const testimonials = [
   },
   {
     stars: 4,
-    text: `Outstanding Amazon FBA Wholesale service! The entire process—from product sourcing to supplier negotiation—was handled with precision and professionalism. The supplier connections were solid, and the strategy helped me scale my business efficiently. If you're looking for a reliable and profitable wholesale solution, this is the service to go for!`,
+    text: `Outstanding Amazon FBA Wholesale service! The entire process—from product sourcing to supplier negotiation—was handled with precision and professionalism. The strategy helped me scale my business efficiently. If you're looking for a reliable and profitable wholesale solution, this is the service to go for!`,
     customerImage: "https://randomuser.me/api/portraits/men/4.jpg",
     customerName: "Shawn Penning",
   },
@@ -51,7 +51,7 @@ export const CustomerCarousel = () => {
           <Heading first="Our" center="Satisfied" last="Customers" />
         </motion.div>
 
-        <div className="w-full ">
+        <div className="max-w-[1660px] mx-auto w-full sm:px-8 md:px-12 lg:px-20">
           <CarouselDesktop testimonials={testimonials} />
           <CarouselMobile testimonials={testimonials} />
         </div>

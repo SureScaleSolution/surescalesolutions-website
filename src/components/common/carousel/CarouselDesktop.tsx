@@ -15,49 +15,25 @@ type CarouselDesktopProps = {
   }[];
 };
 
-export default function CarouselDesktop({ testimonials }: CarouselDesktopProps) {
+export default function CarouselDesktop({
+  testimonials,
+}: CarouselDesktopProps) {
   const settings = {
     className: "center",
-    centerMode: true,
     dots: true,
     infinite: true,
-    centerPadding: "400px",
-    slidesToShow: 1,
+    slidesToShow: 3,
     speed: 500,
     focusOnSelect: true,
     responsive: [
       {
-        breakpoint: 1350,
+        breakpoint: 1280,
         settings: {
-          centerPadding: "350px",
-          slidesToShow: 1,
-        },
-      },
-      {
-        breakpoint: 1200,
-        settings: {
-          centerPadding: "300px",
-          slidesToShow: 1,
-        },
-      },
-      {
-        breakpoint: 1000,
-        settings: {
-          centerPadding: "230px",
-          slidesToShow: 1,
-        },
-      },
-      {
-        breakpoint: 900,
-        settings: {
-          centerPadding: "150px",
-          slidesToShow: 1,
+          slidesToShow: 2,
         },
       },
     ],
   };
-
-  
 
   // Function to render stars based on rating
   const renderStars = (rating: number) => {
@@ -85,21 +61,21 @@ export default function CarouselDesktop({ testimonials }: CarouselDesktopProps) 
   };
 
   return (
-    <div className=" hidden md:block bg-white">
+    <div className=" hidden sm:block bg-white">
       <Slider {...settings}>
         {testimonials.map((testimonial, index) => (
-          <div key={index} className="py-2">
-            <div className="flex flex-col bg-white  shadow-carousel h-full min-h-[300px] text-black gap-y-3 md:gap-y-7 px-2 py-3 md:px-4 md:py-5 rounded-xl">
+          <div key={index} className="py-2 h-full">
+            <div className="flex flex-col bg-white shadow-carousel h-full text-black gap-y-3 md:gap-y-7 px-4 py-5 md:px-8 md:py-10 rounded-xl">
               {/* stars */}
               <div className="flex gap-x-2 items-center">
                 {renderStars(testimonial.stars)}
               </div>
               {/* Text */}
               <p
-                className="text-xs md:text-lg text-darkGray  flex-1 mb-4"
+                className="text-xs md:text-lg text-darkGray flex-1 mb-4"
                 dangerouslySetInnerHTML={{ __html: testimonial.text }}></p>
               {/* Image */}
-              <div className="flex items-center  justify-between">
+              <div className="flex items-center justify-between mt-auto">
                 {/* 1st half */}
                 <div className="flex items-center gap-x-2">
                   <div className="w-7 h-7 md:w-13 md:h-13 border-3 rounded-full border-primary p-0.5 ">
