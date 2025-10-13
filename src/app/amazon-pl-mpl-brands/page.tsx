@@ -16,7 +16,7 @@ export default function AmazonPlMplBrandsPage() {
       <CoreFeatures />
       <CTO1
         first="Ready to Transform Your Amazon PL & MPL Brands  "
-        description="Let’s discuss how we can scale your success, togather."
+        description="Let's discuss how we can scale your success, togather."
       />
     </PageWrapper>
   );

@@ -18,7 +18,7 @@ export const Button: React.FC<ButtonProps> = ({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`flex items-center justify-center border-primary border-1 font-bold px-18 py-2 transition-colors duration-300 text-xs md:text-sm lg:text-base ${
+      className={`flex items-center justify-center rounded border-primary border-1 font-bold px-18 py-2 transition-colors duration-300 text-xs md:text-sm lg:text-base ${
         disabled 
           ? 'bg-gray-400 text-gray-600 cursor-not-allowed' 
           : 'hover:bg-transparent bg-primary cursor-pointer text-white hover:text-primary'
