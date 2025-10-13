@@ -64,8 +64,8 @@ export const PartnerInGrowth = () => {
                   height={100}
                 />
               </div>
-              <div className="flex  flex-col justify-center text-center gap-y-4">
-                <h3 className="text-2xl flex-1 font-semibold">{item.title}</h3>
+              <div className="flex flex-1 flex-col justify-center text-center gap-y-4">
+                <h3 className="text-2xl font-semibold">{item.title}</h3>
                 <p className="flex-1 text-base text-darkGray font-medium ">
                   {item.description}
                 </p>
