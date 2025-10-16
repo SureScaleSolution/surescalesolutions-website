@@ -20,7 +20,7 @@ const Hero = () => {
             Shopify Store Development & Optimization Services
           </h1>
           <p className="text-sm md:text-lg font-light mb-6">
-            At SureScale Solutions, we don&apos;t just build Shopify stores — we
+            At SureScale Solutions, we don&apos;t just build Shopify stores , we
             build businesses. Our team specializes in designing, developing, and
             scaling high-converting Shopify stores that increase your revenue,
             boost visibility, and build customer loyalty. We also help generate

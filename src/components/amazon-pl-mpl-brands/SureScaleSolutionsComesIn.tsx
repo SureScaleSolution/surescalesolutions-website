@@ -157,7 +157,7 @@ export const SureScaleSolutionsComesIn = () => {
             <span className="font-bold text-black">
               Private Label (PL) and Micro Private Label (MPL)
             </span>{" "}
-            brand support—from identifying the right niche to sourcing,
+            brand support,from identifying the right niche to sourcing,
             branding, packaging, launching, and scaling your Amazon business.
             <br />
             <br />

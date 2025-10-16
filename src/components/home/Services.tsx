@@ -37,7 +37,7 @@ export const ServicesCards = ({
       icon: "icon1",
       title: "Amazon FBM & Dropshipping",
       description:
-        "End-to-end management for FBM and dropshipping stores—from product research to customer service, all on a commission-based model.",
+        "End-to-end management for FBM and dropshipping stores,from product research to customer service, all on a commission-based model.",
     },
     {
       link: "account-reinstatement",
@@ -45,7 +45,7 @@ export const ServicesCards = ({
       icon: "icon7",
       title: "Account Reinstatement Support",
       description:
-        "Recover your accounts quickly—Amazon, Walmart, or TikTok. We handle reinstatements and violation disputes efficiently.",
+        "Recover your accounts quickly,Amazon, Walmart, or TikTok. We handle reinstatements and violation disputes efficiently.",
     },
 
     {
@@ -54,7 +54,7 @@ export const ServicesCards = ({
       icon: "icon4",
       title: "Walmart Marketplace",
       description:
-        "Specialized dropshipping and wholesale services—WFS inventory, listing optimization, and account reinstatement all under one roof.",
+        "Specialized dropshipping and wholesale services,WFS inventory, listing optimization, and account reinstatement all under one roof.",
     },
     {
       link: "tiktok",
@@ -62,7 +62,7 @@ export const ServicesCards = ({
       icon: "icon5",
       title: "TikTok Shop Growth",
       description:
-        "Launch and scale with viral potential—product sourcing, branding, TikTok ad strategies, and violation handling.",
+        "Launch and scale with viral potential,product sourcing, branding, TikTok ad strategies, and violation handling.",
     },
     {
       link: "ebay",
@@ -70,7 +70,7 @@ export const ServicesCards = ({
       icon: "icon6",
       title: "eBay Store Optimization",
       description:
-        "Full-service eBay growth solutions—SEO listings, account management, customer handling, and sales acceleration.",
+        "Full-service eBay growth solutions,SEO listings, account management, customer handling, and sales acceleration.",
     },
     {
       link: "shopify",
@@ -86,7 +86,7 @@ export const ServicesCards = ({
       icon: "icon2",
       title: "Amazon FBA Wholesale",
       description:
-        "Fixed-fee scaling for your wholesale business—involves product sourcing, supplier onboarding, PPC, and full inventory & sales management.",
+        "Fixed-fee scaling for your wholesale business,involves product sourcing, supplier onboarding, PPC, and full inventory & sales management.",
     },
     {
       link: "amazon-pl-mpl-brands",

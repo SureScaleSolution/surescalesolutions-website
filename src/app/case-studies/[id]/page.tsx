@@ -46,7 +46,7 @@ export default async function CasePage({ params }: CasePageProps) {
           <Impact caseStudy={caseStudy} />
           <Result caseStudy={caseStudy} />
           <Testimonial caseStudy={caseStudy} />
-          <CTO1 description="Account reinstatement is not just about getting back online — it's about building a safer, stronger, and more profitable Amazon business." />
+          <CTO1 description="Account reinstatement is not just about getting back online , it's about building a safer, stronger, and more profitable Amazon business." />
         </>
       )}
     </PageWrapper>

@@ -14,7 +14,7 @@ const differences = [
   {
     title: "Multi-Platform Expertise",
     description:
-      "Amazon, Walmart, TikTok Shop, eBay, or Shopify — we know how to make each platform work for you.",
+      "Amazon, Walmart, TikTok Shop, eBay, or Shopify , we know how to make each platform work for you.",
     icon: "/about-us/2.svg",
   },
   {

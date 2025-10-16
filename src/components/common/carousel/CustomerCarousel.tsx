@@ -15,7 +15,7 @@ const testimonials = [
   },
   {
     stars: 4,
-    text: `Outstanding Amazon FBA Wholesale service! The entire process—from product sourcing to supplier negotiation—was handled with precision and professionalism. The strategy helped me scale my business efficiently. If you're looking for a reliable and profitable wholesale solution, this is the service to go for!`,
+    text: `Outstanding Amazon FBA Wholesale service! The entire process,from product sourcing to supplier negotiation,was handled with precision and professionalism. The strategy helped me scale my business efficiently. If you're looking for a reliable and profitable wholesale solution, this is the service to go for!`,
     customerImage: "https://randomuser.me/api/portraits/men/4.jpg",
     customerName: "Shawn Penning",
   },
